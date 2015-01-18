@@ -1,3 +1,3 @@
 # WEPA-RubyonRails
 
-saknetweparuby.herokuapp.com/breweries
+http://warm-taiga-3244.herokuapp.com/breweries
