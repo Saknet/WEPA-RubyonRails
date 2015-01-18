@@ -1,3 +1,3 @@
 # WEPA-RubyonRails
 
-saknetweparuby.herokuapp.com/beers
+saknetweparuby.herokuapp.com/breweries
