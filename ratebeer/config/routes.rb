@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :memberships
+
   resources :beer_clubs
 
   resources :users
@@ -8,6 +10,8 @@ Rails.application.routes.draw do
   resources :breweries
 
   resource :session, only: [:new, :create, :delete]
+
+  resources :beer_clubs
 
   root 'breweries#index'
 

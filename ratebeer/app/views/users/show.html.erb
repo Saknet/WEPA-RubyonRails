@@ -13,6 +13,18 @@
     Average rating is <%= @user.average_rating %>
 <% end %>
 
+
+<p>
+  member of
+  <% @user.beer_clubs.each do |club| %>
+      <%= link_to club.name, club %>
+  <% end %>
+</p>
+
+<p>
+  <strong> ratings</strong>
+</p>
+
 <ul>
   <% @user.ratings.each do |rating| %>
       <li>
