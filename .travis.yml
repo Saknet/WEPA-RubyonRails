@@ -10,4 +10,5 @@ deploy:
   provider: heroku
   api_key:
     secure: KyANRyeEnAM5n1Wbgc7U5FYkueWiQC5a/flM7mZc6YZQLbfuqgzvQ3ZaN3AchizVrxW7mSIrm2J9xC3xSiKplL2nHuupqX1vAwfn0aJfRz7MDEr3Hprcev8NntKnne9YC8hM34SnxCxfwZ2AFNvHS6JsOHZrRJzY772M+NKt8SM=
+  app: warm-taiga-3244
   run: "rake db:migrate"
