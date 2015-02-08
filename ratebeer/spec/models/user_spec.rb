@@ -85,3 +85,4 @@ describe User do
     beer
   end
 end
+
