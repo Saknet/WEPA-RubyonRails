@@ -116,7 +116,7 @@ describe User do
       FactoryGirl.create :rating, score:1, beer: (FactoryGirl.create :beer, brewery:brewery), user:user
       FactoryGirl.create :rating, score:2, beer: (FactoryGirl.create :beer, brewery:brewery), user:user
 
-      expect(user.favorite_brewery).to eq(brewery.name)
+      expect(user.favorite_brewery).to eq(brewery)
     end
 
     it "is the one with highest average rating if several beers from breweries have been" do
@@ -127,7 +127,7 @@ describe User do
       FactoryGirl.create :rating, score:2, beer: (FactoryGirl.create :beer, brewery:brewery2), user:user
       FactoryGirl.create :rating, score:2, beer: (FactoryGirl.create :beer, brewery:brewery2), user:user
 
-      expect(user.favorite_brewery).to eq(brewery2.name)
+      expect(user.favorite_brewery).to eq(brewery2)
     end
   end
 

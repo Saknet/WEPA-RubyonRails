@@ -21,6 +21,7 @@
   <% end %>
 </p>
 
+<% if @user.ratings.any? %>
 <p>
   Favorite beer: <%= @user.favorite_beer %>
 </p>
@@ -30,8 +31,9 @@
 </p>
 
 <p>
-  Favorite brewery: <%= @user.favorite_brewery %>
+  Favorite brewery: <%= @user.favorite_brewery.name %>
 </p>
+<% end %>
 
 <p>
   <strong> ratings</strong>

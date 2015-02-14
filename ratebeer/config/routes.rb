@@ -19,7 +19,16 @@ Rails.application.routes.draw do
 
   get 'signin', to: 'sessions#new'
 
+  delete 'memberships', to: 'memberships#destroy'
+
   delete 'signout', to: 'sessions#destroy'
+
+  resources :places, only:[:index, :show]
+  # mikä generoi samat polut kuin seuraavat kaksi
+  # # get 'places', to:'places#index'
+  # # get 'places/:id', to:'places#show'
+
+  post 'places', to:'places#search'
 
   #get 'kaikki_bisset', to: 'beers#index'
   #get 'ratings', to: 'ratings#index'

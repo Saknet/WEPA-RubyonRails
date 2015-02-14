@@ -79,7 +79,7 @@ end
       FactoryGirl.create :rating, score:5, beer: (FactoryGirl.create :beer, style: "Porter"), user:user
       visit user_path(user)
 
-      expect(page).to have_content "Favorite style Porter"
+      expect(page).to have_content "Favorite style: Porter"
     end
 
     it "shows favorite brewery" do
@@ -90,6 +90,6 @@ end
       FactoryGirl.create :rating, score:2, beer: (FactoryGirl.create :beer, brewery:brewery2), user:user
       visit user_path(user)
 
-      expect(page).to have_content "Favorite brewery testi"
+      expect(page).to have_content "Favorite brewery: testi"
     end
   end
