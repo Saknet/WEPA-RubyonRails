@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 describe "User" do
+
+  let!(:style1){ FactoryGirl.create :style, name: "Lager"}
+  let!(:style2){ FactoryGirl.create :style, name: "IPA"}
+  let!(:style3){ FactoryGirl.create :style, name: "Porter"}
+
   before :each do
     FactoryGirl.create :user
   end
@@ -40,8 +45,8 @@ end
     let!(:user) { FactoryGirl.create :user}
     let!(:brewery) { FactoryGirl.create :brewery, name:"Koff" }
     let!(:beer1) { FactoryGirl.create :beer, name:"iso 3", brewery:brewery }
-    let!(:beer2) { FactoryGirl.create :beer, name:"Karhu", brewery:brewery }
-    let!(:beer3) { FactoryGirl.create :beer, name:"testiolut", brewery:brewery }
+    let!(:beer2) { FactoryGirl.create :beer, name:"Karhu", style: (FactoryGirl.create(:style2)), brewery:brewery }
+    let!(:beer3) { FactoryGirl.create :beer, name:"testiolut", style: (FactoryGirl.create(:style3)), brewery:brewery }
     let!(:user2) { FactoryGirl.create :user , username: "testi"}
 
     before :each do
@@ -72,11 +77,11 @@ end
     end
 
     it "shows favorite style" do
-      FactoryGirl.create :rating, score:1, beer: (FactoryGirl.create :beer, style: "Lager"), user:user
-      FactoryGirl.create :rating, score:2, beer: (FactoryGirl.create :beer, style: "Lager"), user:user
-      FactoryGirl.create :rating, score:3, beer: (FactoryGirl.create :beer, style: "IPA"), user:user
-      FactoryGirl.create :rating, score:4, beer: (FactoryGirl.create :beer, style: "IPA"), user:user
-      FactoryGirl.create :rating, score:5, beer: (FactoryGirl.create :beer, style: "Porter"), user:user
+      FactoryGirl.create :rating, score:1, beer: beer1, user:user
+      FactoryGirl.create :rating, score:2, beer: beer2, user:user
+      FactoryGirl.create :rating, score:3, beer: beer2, user:user
+      FactoryGirl.create :rating, score:4, beer: beer3, user:user
+      FactoryGirl.create :rating, score:5, beer: beer3, user:user
       visit user_path(user)
 
       expect(page).to have_content "Favorite style: Porter"

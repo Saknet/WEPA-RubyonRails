@@ -5,6 +5,21 @@ FactoryGirl.define do
     password_confirmation "Foobar1"
   end
 
+  factory :style do
+    name "Lager"
+    description "jee"
+  end
+
+  factory :style2, class: Style do
+    name "IPA"
+    description "jee"
+  end
+
+  factory :style3, class: Style do
+    name "Porter"
+    description "jee"
+  end
+
   factory :rating do
     score 10
   end
@@ -21,6 +36,6 @@ FactoryGirl.define do
   factory :beer do
     name "anonymous"
     brewery
-    style "Lager"
+    style
   end
 end

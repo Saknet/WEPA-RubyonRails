@@ -75,6 +75,9 @@ describe User do
 
   describe "favorite style" do
     let(:user){ FactoryGirl.create(:user) }
+    let(:beer){ FactoryGirl.create(:beer) }
+    let(:beer2){ FactoryGirl.create(:beer, style: (FactoryGirl.create(:style2))) }
+    let(:beer3){ FactoryGirl.create(:beer, style: (FactoryGirl.create(:style3))) }
 
     it "has method for determining one" do
       user.should respond_to :favorite_style
@@ -90,13 +93,13 @@ describe User do
     end
 
     it "is the one with highest average rating if several styles are rated" do
-      FactoryGirl.create :rating, score:1, beer: (FactoryGirl.create :beer, style: "Lager"), user:user
-      FactoryGirl.create :rating, score:2, beer: (FactoryGirl.create :beer, style: "Lager"), user:user
-      FactoryGirl.create :rating, score:3, beer: (FactoryGirl.create :beer, style: "IPA"), user:user
-      FactoryGirl.create :rating, score:4, beer: (FactoryGirl.create :beer, style: "IPA"), user:user
-      FactoryGirl.create :rating, score:5, beer: (FactoryGirl.create :beer, style: "Porter"), user:user
+      FactoryGirl.create :rating, score:1, beer: beer, user:user
+      FactoryGirl.create :rating, score:2, beer: beer2, user:user
+      FactoryGirl.create :rating, score:3, beer: beer2, user:user
+      FactoryGirl.create :rating, score:4, beer: beer3, user:user
+      FactoryGirl.create :rating, score:5, beer: beer3, user:user
 
-      expect(user.favorite_style).to eq("Porter")
+      expect(user.favorite_style.name).to eq("Porter")
     end
   end
 

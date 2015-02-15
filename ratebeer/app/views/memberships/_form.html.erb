@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label "Beer Clubs" %><br>
-    <%= f.select :beer_club_id, options_from_collection_for_select(BeerClub.all, :id, :name) %>
+    <%= f.select :beer_club_id, options_from_collection_for_select(BeerClub.all.select{ |bc| not bc.users.include?(current_user) }, :id, :name) %>
   </div>
 
   <div class="actions">

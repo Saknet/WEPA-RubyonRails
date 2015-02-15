@@ -3,9 +3,9 @@ require 'rails_helper'
 describe Beer do
 
   describe "with proper name and style" do
+    let!(:beer){ FactoryGirl.create :beer}
 
-    it "it is saved" do
-      beer = Beer.create name:"testiolut", style:"Lager"
+    it "is saved" do
       expect(beer).to be_valid
       expect(Beer.count).to eq(1)
     end
@@ -13,7 +13,7 @@ describe Beer do
 
   describe "with no name" do
 
-    it "it is not saved" do
+    it "is not saved" do
       beer = Beer.create
       expect(beer).not_to be_valid
       expect(Beer.count).to eq(0)
@@ -36,8 +36,8 @@ describe Beer do
       expect(beer).to be_valid
     end
 
-    it "hs the default style" do
-      expect(beer.style).to eq("Lager")
+    it "is the default style" do
+      expect(beer.style.name).to eq("Lager")
     end
   end
 end
