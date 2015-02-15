@@ -5,6 +5,7 @@ class Beer < ActiveRecord::Base
 
   validates :style, presence: true
 
+  belongs_to :style
   belongs_to :brewery
   has_many :ratings, dependent: :destroy
   has_many :raters, through: :ratings, source: :user

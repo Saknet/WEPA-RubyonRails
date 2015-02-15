@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :styles
+
   resources :memberships
 
   resources :beer_clubs
@@ -18,8 +20,6 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
 
   get 'signin', to: 'sessions#new'
-
-  delete 'memberships', to: 'memberships#destroy'
 
   delete 'signout', to: 'sessions#destroy'
 
