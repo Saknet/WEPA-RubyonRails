@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :beer_club_id %><br>
-    <%= f.select :beer_club_id, options_from_collection_for_select(@beerclub, :id, :name) %>
+    <%= f.label "Beer Clubs" %><br>
+    <%= f.select :beer_club_id, options_from_collection_for_select(BeerClub.all, :id, :name) %>
   </div>
 
   <div class="actions">

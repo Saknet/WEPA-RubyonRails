@@ -16,21 +16,24 @@
   <% end %>
 </ul>
 
-<% if current_user and not @beer_club.is_member?(current_user) %>
+<% if current_user %>
 
-    <h4>Join a club</h4>
+    <% if not @beer_club.is_member?(current_user) %>
 
-    <%= form_for(@membership) do |f| %>
-        <%= f.hidden_field :beer_club_id%>
-        <%= f.submit value:"join the club" %>
+        <h4>Join a club</h4>
+
+        <%= form_for(@membership) do |f| %>
+            <%= f.hidden_field :beer_club_id%>
+            <%= f.submit value:"join the club" %>
+        <% end %>
     <% end %>
-<% end %>
 
-<% if current_user and @beer_club.is_member?(current_user) %>
+    <% if @beer_club.is_member?(current_user) %>
 
-    <%= form_for(@membership, method: "delete") do |f| %>
-        <%= f.hidden_field :beer_club_id%>
-        <%= f.submit value:"end the membership" %>
+        <%= form_for(@membership, method: "delete") do |f| %>
+            <%= f.hidden_field :beer_club_id%>
+            <%= f.submit value:"end the membership" %>
+        <% end %>
     <% end %>
 <% end %>
 
