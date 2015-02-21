@@ -10,7 +10,7 @@
 </p>
 
 <% if not @user.ratings.empty? %>
-    Average rating is <%= @user.average_rating %>
+    Average rating is <%= round(@user.average_rating) %>
 <% end %>
 
 
@@ -49,6 +49,12 @@
       </li>
   <% end %>
 </ul>
+
+<p>
+  <% if current_user and current_user.admin %>
+      <%= link_to "froze account", toggle_suspended_user_path(@user.id), method: :post, class: "btn btn-danger" %>
+  <% end %>
+</p>
 
 <%= link_to 'Edit', edit_user_path(@user), class:"btn btn-default" %> |
 <%= link_to 'Destroy', @user, method: :delete, class:"btn btn-danger", data: { confirm: 'Are you sure?' } %>

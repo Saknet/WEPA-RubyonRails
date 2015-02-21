@@ -1,5 +1,15 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :ensure_that_user_is_admin, only: [:toggle_suspended]
+
+  def toggle_suspended
+    user = User.find(params[:id])
+    user.update_attribute :suspended , (not user.suspended)
+
+    new_status = user.suspended? ? "suspended" : "normal"
+
+    redirect_to :back, notice:"user account status changed to #{new_status}"
+  end
 
   # GET /users
   # GET /users.json
