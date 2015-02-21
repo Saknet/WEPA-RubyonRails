@@ -2,7 +2,7 @@
 
 <h1>Listing Beer Clubs</h1>
 
-<table>
+<table class ="table table-condensed">
   <thead>
     <tr>
       <th>Name</th>
@@ -15,7 +15,7 @@
   <tbody>
     <% @beer_clubs.each do |beer_club| %>
       <tr>
-        <td><%= link_to beer_club.name, beer_club %></td>
+        <td><%= link_to beer_club.name, beer_club, class:"btn btn-link" %></td>
         <td><%= beer_club.founded %></td>
         <td><%= beer_club.city %></td>
       </tr>
@@ -25,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Beer club', new_beer_club_path if current_user%>
+<%= link_to 'New Beer club', new_beer_club_path, class:"btn btn-success" if current_user%>

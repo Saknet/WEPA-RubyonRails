@@ -1,0 +1,29 @@
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th></th>
+    <th>favorite beer</th>
+    <th>prefered style</th>
+    <th>favorite brewery</th>
+    <th>ratings</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% users.each do |user| %>
+      <tr>
+        <td><%= link_to user.username, user %></td>
+        <td><% if not user.favorite_beer.nil? %>
+              <%= user.favorite_beer %>
+          <% end %></td>
+        <td><% if not user.favorite_style.nil? %>
+              <%= user.favorite_style %>
+          <% end %></td>
+        <td><% if not user.favorite_brewery.nil? %>
+              <%= user.favorite_brewery.name %>
+          <% end %></td>
+        <td><%= user.ratings.count %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

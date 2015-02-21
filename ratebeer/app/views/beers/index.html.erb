@@ -2,7 +2,7 @@
 
 <h1>Listing Beers</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
       <th>Name</th>
@@ -15,17 +15,17 @@
   <tbody>
     <% @beers.each do |beer| %>
       <tr>
-        <td><%= link_to beer.name, beer %></td>
-        <td><%= link_to beer.style, beer.style %></td>
-        <td><%= link_to beer.brewery.name, beer.brewery %></td>
-        <td><%= link_to 'Edit', edit_beer_path(beer) if current_user%></td>
-        <td><%= link_to 'Destroy', beer, method: :delete, data: { confirm: 'Are you sure?' } if current_user%></td>
+        <td><%= link_to beer.name, beer, class:"btn btn-link"  %></td>
+        <td><%= link_to beer.style, beer.style, class:"btn btn-link"  %></td>
+        <td><%= link_to beer.brewery.name, beer.brewery, class:"btn btn-link"  %></td>
+        <td><%= link_to 'Edit', edit_beer_path(beer), class:"btn btn-default" if current_user%></td>
+        <td><%= link_to 'Destroy' , beer, method: :delete, class:"btn btn-danger", data: { confirm: 'Are you sure?' } if current_user%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<%= link_to('New Beer', new_beer_path) if current_user %>
+<%= link_to 'New Beer', new_beer_path, class:"btn btn-success" if current_user %>
 <br>
-<%= link_to 'List of breweries', breweries_path %>
+<%= link_to 'List of breweries', breweries_path, class:"btn btn-info" %>

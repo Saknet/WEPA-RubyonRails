@@ -1,0 +1,17 @@
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th></th>
+    <th>average</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% tops.each do |best| %>
+      <tr>
+        <td><%= link_to best.name, best %></td>
+        <td><%= round(best.average_rating) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

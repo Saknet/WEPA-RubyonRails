@@ -50,6 +50,6 @@
   <% end %>
 </ul>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %>
-<%= link_to 'Back', users_path %>
+<%= link_to 'Edit', edit_user_path(@user), class:"btn btn-default" %> |
+<%= link_to 'Destroy', @user, method: :delete, class:"btn btn-danger", data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Back', users_path, class:"btn btn-link" %>

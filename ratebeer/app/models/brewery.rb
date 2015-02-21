@@ -7,8 +7,16 @@ class Brewery < ActiveRecord::Base
                             only_integer: true }
   validate :back_to_the_future, on: :create
 
+  scope :active, -> { where active:true}
+  scope :retired, -> { where active:[nil, false]}
+
   has_many :beers, dependent: :destroy
   has_many :ratings, through: :beers
+
+  def self.top(n)
+    sorted_by_rating_in_desc_order = Brewery.all.sort_by{ |b| -(b.average_rating||0)}
+    sorted_by_rating_in_desc_order.first(n)
+  end
 
   def back_to_the_future
     if year > Date.today.year
