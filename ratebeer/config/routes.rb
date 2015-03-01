@@ -23,11 +23,17 @@ Rails.application.routes.draw do
 
   root 'breweries#index'
 
+  get 'brewerylist', to:'breweries#list'
+
+  get 'ngbeerlist', to:'beers#nglist'
+
   get 'signup', to: 'users#new'
 
   get 'signin', to: 'sessions#new'
 
   delete 'signout', to: 'sessions#destroy'
+
+  get 'beerlist', to:'beers#list'
 
   resources :places, only:[:index, :show]
   # mikä generoi samat polut kuin seuraavat kaksi

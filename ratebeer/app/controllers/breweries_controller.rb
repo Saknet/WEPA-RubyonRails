@@ -1,7 +1,18 @@
 class BreweriesController < ApplicationController
   before_action :set_brewery, only: [:show, :edit, :update, :destroy]
-  before_action :ensure_that_signed_in, except: [:index, :show]
+  before_action :ensure_that_signed_in, except: [:index, :show, :list]
   before_action :ensure_that_user_is_admin, only: [:destroy]
+  before_action :skip_if_cached, only:[:index]
+  before_action :expire_fragments, only: [:create, :update, :destroy]
+
+  def expire_fragments
+    ["brewerylist-name", "brewerylist-year"].each{ |f| expire_fragment(f) }
+  end
+
+  def skip_if_cached
+    @order = params[:order] || 'name'
+    return render :index if fragment_exist?( "brewerylist-#{@order}" )
+  end
 
   def toggle_activity
     brewery = Brewery.find(params[:id])
@@ -14,14 +25,59 @@ class BreweriesController < ApplicationController
   # GET /breweries
   # GET /breweries.json
   def index
+    @breweries = Brewery.all
     @active_breweries = Brewery.active
     @retired_breweries = Brewery.retired
-    :su
+
+    order = params[:order] || 'name'
+
+    if order == 'name'
+      if session[:last_order_name] == 'asc'
+        reverse_breweries_name
+        session[:last_order_name] = 'desc'
+      else
+        sort_breweries_name
+        session[:last_order_name] = 'asc'
+      end
+    end
+
+    if order == 'year'
+      if session[:last_order_year] == 'asc'
+        reverse_breweries_year
+        session[:last_order_year] = 'desc'
+      else
+        sort_breweries_year
+        session[:last_order_year] = 'asc'
+      end
+    end
   end
-  
+
+  def reverse_breweries_name
+    @active_breweries = @active_breweries.sort_by{ |b| b.name }.reverse!
+    @retired_breweries = @retired_breweries.sort_by{ |b| b.name}.reverse!
+  end
+
+  def sort_breweries_name
+    @active_breweries = @active_breweries.sort_by{ |b| b.name }
+    @retired_breweries = @retired_breweries.sort_by{ |b| b.name }
+  end
+
+  def reverse_breweries_year
+    @active_breweries = @active_breweries.sort_by{ |b| b.year }.reverse!
+    @retired_breweries = @retired_breweries.sort_by{ |b| b.year }.reverse!
+  end
+
+  def sort_breweries_year
+    @active_breweries = @active_breweries.sort_by{ |b| b.year }
+    @retired_breweries = @retired_breweries.sort_by{ |b| b.year }
+  end
+
   # GET /breweries/1
   # GET /breweries/1.json
   def show
+  end
+
+  def list
   end
 
   # GET /breweries/new

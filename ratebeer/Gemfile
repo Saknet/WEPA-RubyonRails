@@ -11,6 +11,14 @@ gem 'rspec-its'
 
 gem 'httparty'
 
+gem 'jquery-turbolinks'
+
+gem 'selenium-webdriver'
+
+gem 'database_cleaner'
+
+gem 'rack-mini-profiler'
+
 gem 'bootstrap-sass'
 group :development do
   gem 'rails_layout'
